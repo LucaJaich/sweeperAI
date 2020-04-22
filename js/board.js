@@ -33,6 +33,14 @@ class Board {
         }
     }
 
+    inArray(item, array) {
+        let result = false;
+        for (let i in array) {
+            if (array[i][0] == item[0] && array[i][1] == item[1]) { result = true; break; }
+        }
+        return result
+    }
+
     setMines() {
         let used = [];
         let x, y;
@@ -40,18 +48,17 @@ class Board {
             while (true) {
                 x = Math.floor(Math.random() * this.w); 
                 y = Math.floor(Math.random() * this.h);
-                if (!used.includes([x, y])) {
+                if (!this.inArray([x, y], used)) {
                     used.push([x, y]);
                     this.grid[y][x].hidVal = "bomb";
                     break
-                } else {console.log("hey")}
+                }
             }
         }
         this.mines = used;
     }
 
     setHidVal(x, y) {
-        let item;
         let sets = [[-1, -1], [-1, 0], [-1, 1], [0, -1], [0, 0], [0, 1], [1, -1], [1, 0], [1, 1]]
         for (let i in sets) {
             try {

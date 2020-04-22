@@ -5,8 +5,6 @@ class Item {
         this.hidVal = 0;
         this.x = x;
         this.y = y;
-        this.xPos = Math.floor(this.x / this.size);
-        this.yPos = Math.floor(this.y / this.size);
         this.size = size;
         this.clicked = false;
         this.flag = false;
